@@ -1,0 +1,44 @@
+---
+import BrandMark from "./BrandMark.astro";
+import { nav, site, services } from "../lib/site";
+const year = new Date().getFullYear();
+---
+<footer class="grain relative overflow-hidden bg-dark text-base/70">
+  <div class="container-wide relative z-10 section">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <a href="/" class="text-base" aria-label={site.name}><BrandMark /></a>
+        <p class="mt-6 max-w-sm text-base/60 leading-relaxed">
+          {site.tagline}. Ontwerp, fabricage en onderhoud van bandoprapers en maatwerkconstructies. Vakwerk sinds {site.since}.
+        </p>
+        <div class="mt-8 flex flex-col gap-1 font-mono text-sm">
+          <a href={site.phoneHref} class="w-fit text-base/80 transition hover:text-accent-300">{site.phone}</a>
+          <a href={site.emailHref} class="w-fit text-base/80 transition hover:text-accent-300">{site.email}</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 lg:col-start-7">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-base/40">Menu</p>
+        <ul class="mt-5 space-y-3">
+          {nav.map((item) => (
+            <li><a href={item.href} class="text-base/75 transition hover:text-accent-300">{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-base/40">Diensten</p>
+        <ul class="mt-5 space-y-3">
+          {services.map((s) => (
+            <li><a href={s.href} class="text-base/75 transition hover:text-accent-300">{s.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-3 border-t border-base/12 pt-7 text-xs text-base/45 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} {site.name}. Alle rechten voorbehouden.</p>
+      <p class="font-mono">Redesign-concept door Agensea. Demo, geen officiële website.</p>
+    </div>
+  </div>
+</footer>

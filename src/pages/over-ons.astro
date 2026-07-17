@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import { values } from "../lib/site";
+
+const timeline = [
+  { year: "1966", title: "Het begin", body: "Lievense start als loonbedrijf onder leiding van Jan Lievense. De basis: hard werken op het land en zelf de handen uit de mouwen." },
+  { year: "2001", title: "Huibregtse Machinehandel", body: "De volledige integratie van Huibregtse Machinehandel versterkt de kennis van maaidorsers en transportsystemen. Constructie en machinebouw komen samen." },
+  { year: "Vandaag", title: "Constructie en machinebouw", body: "Een vertrouwd adres voor bandoprapers, constructiewerk, aandrijftechniek, onderhoud en agrarisch loonwerk. Nog altijd met dezelfde nuchtere instelling." },
+];
+---
+<Layout
+  title="Over ons · Lievense Constructie"
+  description="Sinds 1966 een vertrouwd adres voor constructiewerk, onderhoud, reparatie en agrarisch loonwerk. Van loonbedrijf tot gespecialiseerde machinebouwer."
+  heroTone="light"
+>
+  <PageHero
+    eyebrow={`Familiebedrijf sinds 1966`}
+    title="Een vertrouwd adres, <span class='text-accent-300'>generatie op generatie</span>."
+    lead="Sinds 1966 is Lievense Constructie een vertrouwd adres voor constructiewerk, onderhoud, reparatie en agrarisch loonwerk."
+    image="/images/lievense/bandopraper-side.jpg"
+  />
+
+  <!-- STORY -->
+  <section class="section bg-base">
+    <div class="container-wide grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="eyebrow reveal">Het verhaal</p>
+        <h2 class="reveal mt-6 type-display-md text-ink heading-balance">Gegroeid vanuit het land.</h2>
+      </div>
+      <div class="reveal lg:col-span-6 lg:col-start-7">
+        <div class="space-y-5 type-lead text-ink-muted">
+          <p>
+            Wat begon als een loonbedrijf onder Jan Lievense, groeide uit tot een veelzijdige constructieonderneming. De praktische kennis van het land bleef altijd de basis.
+          </p>
+          <p>
+            Een belangrijk moment kwam in 2001, toen Huibregtse Machinehandel volledig werd geïntegreerd. Daarmee kwam de specialistische kennis van maaidorsers en transportsystemen binnen, en verschoof het accent naar bandoprapers en maatwerkconstructie.
+          </p>
+          <p>
+            Vandaag combineren we die achtergrond met moderne machinebouw. Nuchter, flexibel en gericht op de beste oplossing voor de klant.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section bg-dark text-base grain relative overflow-hidden">
+    <div class="container-wide relative z-10">
+      <p class="eyebrow-bone reveal">Mijlpalen</p>
+      <h2 class="reveal mt-6 type-display-md text-base heading-balance">Bijna zestig jaar vakwerk.</h2>
+      <div class="reveal-stagger mt-14 grid gap-px overflow-hidden rounded-[8px] bg-base/10 md:grid-cols-3">
+        {timeline.map((t) => (
+          <div class="flex flex-col bg-dark p-8 md:p-10">
+            <p class="font-display text-4xl text-accent-300 md:text-5xl" style="font-stretch:112%;font-weight:800;">{t.year}</p>
+            <h3 class="mt-6 type-display-sm text-base">{t.title}</h3>
+            <p class="mt-4 text-base/70 leading-relaxed text-[0.95rem]">{t.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section bg-base">
+    <div class="container-wide">
+      <div class="mb-14 grid gap-6 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-7">
+          <p class="eyebrow reveal">Waar we op bouwen</p>
+          <h2 class="reveal mt-6 type-display-md text-ink heading-balance">Vier principes.</h2>
+        </div>
+      </div>
+      <div class="reveal-stagger grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        {values.map((v, i) => (
+          <article class="border-t border-line pt-6">
+            <p class="font-mono text-xs tracking-[0.1em] text-accent-600">{String(i + 1).padStart(2, "0")}</p>
+            <h3 class="mt-5 font-display text-xl text-ink leading-tight" style="font-stretch:112%;font-weight:700;">{v.key}</h3>
+            <p class="mt-4 text-ink-muted leading-relaxed text-[0.95rem]">{v.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="section-lg bg-base-2">
+    <div class="container-narrow">
+      <p class="eyebrow reveal">In één zin</p>
+      <blockquote class="reveal mt-10 type-display-md text-ink heading-pretty">
+        Degelijke constructies, gebouwd door mensen die het land kennen.
+      </blockquote>
+      <p class="reveal mt-8 font-mono text-xs uppercase tracking-[0.12em] text-ink-muted">Lievense Constructie &middot; Zeeland</p>
+    </div>
+  </section>
+
+  <ContactCTA image="/images/lievense/fabricage-primer.jpg" />
+</Layout>

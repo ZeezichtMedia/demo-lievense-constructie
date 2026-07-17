@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Marquee from "../components/Marquee.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+
+const detail = [
+  {
+    id: "bandoprapers",
+    num: "01",
+    title: "Fabricage van bandoprapers",
+    lead: "Machines voor het oprapen van voorgemaaide gewassen, op maat voor uw maaidorser.",
+    points: [
+      "Mechanische of hydraulische aandrijving",
+      "Passend op elk merk maaidorser",
+      "Compleet gefabriceerd en nagelopen in eigen werkplaats",
+    ],
+    link: { label: "Naar de bandoprapers", href: "/bandoprapers" },
+  },
+  {
+    id: "constructie",
+    num: "02",
+    title: "Constructiewerk en aandrijftechniek",
+    lead: "Van enkel stuk tot serie. Kleine en middelgrote constructies met de aandrijving die erbij hoort.",
+    points: [
+      "Maatwerkconstructies, los of in serie",
+      "Mechanische, hydraulische en elektrische aandrijvingen",
+      "Bestaande machines aanpassen en moderniseren",
+    ],
+  },
+  {
+    id: "onderhoud",
+    num: "03",
+    title: "Onderhoud en reparatie",
+    lead: "Onderhoud en reparatie van landbouwmachines en heftrucks, tot en met revisiewerk.",
+    points: [
+      "Periodiek onderhoud en reparatie",
+      "Eigen vlakbank voor het vlakken van de dorskorf",
+      "Een scherpe en geheel vlakke korf, klaar voor het seizoen",
+    ],
+  },
+  {
+    id: "loonwerk",
+    num: "04",
+    title: "Agrarisch loonwerk",
+    lead: "Praktische ondersteuning op het land, met dezelfde vakkennis waarmee we de machines bouwen.",
+    points: [
+      "Meedenkend en flexibel ingepland",
+      "Werk in de regio Zeeland",
+      "Korte lijnen, snel schakelen",
+    ],
+  },
+];
+---
+<Layout
+  title="Diensten · Lievense Constructie"
+  description="Machinebouw, constructiewerk, aandrijftechniek, onderhoud, reparatie en agrarisch loonwerk. Een breed scala aan diensten voor de landbouw."
+  heroTone="light"
+>
+  <PageHero
+    eyebrow="Wat we doen"
+    title="Machinebouw, constructie en <span class='text-accent-300'>onderhoud</span>."
+    lead="Een breed scala aan diensten op het gebied van machinebouw, onderhoud en agrarisch loonwerk. Praktisch, flexibel en met oog voor het geheel."
+    image="/images/lievense/bandopraper-angle.jpg"
+  />
+
+  <!-- INTRO -->
+  <section class="section bg-base">
+    <div class="container-wide max-w-[1100px]">
+      <p class="eyebrow reveal">Aanpak</p>
+      <h2 class="reveal mt-8 type-display-lg text-ink heading-balance">
+        Praktisch, flexibel en <span class="text-outline-ink">meedenkend.</span>
+      </h2>
+      <div class="reveal mt-12 grid gap-10 lg:grid-cols-12">
+        <p class="type-lead text-ink-muted lg:col-span-5 lg:col-start-7">
+          Van machinebouw en machineaanpassingen tot agrarisch loonwerk: we zoeken samen naar de beste oplossing. Onze basis is jarenlange ervaring en technische kennis, en dat vertaalt zich in duurzame constructies op maat.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Marquee />
+
+  <!-- DETAIL SECTIONS -->
+  <section class="bg-base">
+    <div class="container-wide">
+      {detail.map((d, i) => (
+        <div id={d.id} class="scroll-mt-28 grid gap-8 border-t border-line py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
+          <div class="lg:col-span-4">
+            <p class="step-num text-5xl md:text-6xl">{d.num}</p>
+            <h2 class="reveal mt-5 type-display-sm text-ink">{d.title}</h2>
+          </div>
+          <div class="reveal lg:col-span-6 lg:col-start-6">
+            <p class="type-lead text-ink-muted">{d.lead}</p>
+            <ul class="mt-8 space-y-4">
+              {d.points.map((p) => (
+                <li class="flex items-start gap-4 border-b border-line pb-4 text-ink-soft">
+                  <span class="mt-2 h-2.5 w-2.5 shrink-0 hex bg-accent-500" aria-hidden="true"></span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+            {d.link && (
+              <a href={d.link.href} class="btn-link mt-7">{d.link.label} <span aria-hidden="true">&rarr;</span></a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <ContactCTA image="/images/lievense/bandopraper-side.jpg" />
+</Layout>

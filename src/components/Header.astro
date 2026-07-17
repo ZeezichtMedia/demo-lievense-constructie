@@ -1,0 +1,60 @@
+---
+import BrandMark from "./BrandMark.astro";
+import { nav, site } from "../lib/site";
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+---
+<header class="site-header fixed inset-x-0 top-0 z-50 border-b" data-scrolled="false">
+  <div class="container-wide flex items-center justify-between py-4">
+    <a href="/" class="nav-meta text-ink" aria-label={site.name}>
+      <BrandMark />
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Hoofdmenu">
+      {nav.slice(1, -1).map((item) => (
+        <a
+          href={item.href}
+          class:list={["nav-link text-sm font-medium transition", isActive(item.href) ? "text-ink" : "text-ink-muted hover:text-ink"]}
+        >{item.label}</a>
+      ))}
+      <a href="/contact" class="nav-cta rounded-[4px] bg-ink px-5 py-2.5 text-sm font-medium text-base transition hover:bg-accent-500 hover:text-ink">
+        Neem contact op
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      data-nav-toggle
+      data-open="false"
+      aria-expanded="false"
+      aria-label="Menu"
+      class="nav-link relative z-50 flex h-10 w-10 items-center justify-center lg:hidden"
+    >
+      <span class="flex flex-col gap-[5px]">
+        <span class="block h-[2px] w-6 bg-current transition-transform duration-300 [button[data-open='true']_&]:translate-y-[7px] [button[data-open='true']_&]:rotate-45"></span>
+        <span class="block h-[2px] w-6 bg-current transition-opacity duration-300 [button[data-open='true']_&]:opacity-0"></span>
+        <span class="block h-[2px] w-6 bg-current transition-transform duration-300 [button[data-open='true']_&]:-translate-y-[7px] [button[data-open='true']_&]:-rotate-45"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile panel -->
+  <div
+    data-nav-panel
+    data-open="false"
+    class="fixed inset-0 z-40 flex flex-col bg-dark px-6 pt-28 pb-10 text-base transition-[opacity,transform] duration-500 ease-out data-[open=false]:pointer-events-none data-[open=false]:-translate-y-3 data-[open=false]:opacity-0 lg:hidden"
+  >
+    <nav class="flex flex-col gap-1" aria-label="Mobiel menu">
+      {nav.map((item, i) => (
+        <a href={item.href} class="flex items-baseline gap-4 border-b border-base/10 py-4 text-2xl font-display text-base" style="font-stretch:112%;font-weight:700;">
+          <span class="font-mono text-xs text-accent-300">{String(i + 1).padStart(2, "0")}</span>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="mt-auto space-y-1 pt-8 font-mono text-sm text-base/70">
+      <a href={site.phoneHref} class="block hover:text-accent-300">{site.phone}</a>
+      <a href={site.emailHref} class="block hover:text-accent-300">{site.email}</a>
+    </div>
+  </div>
+</header>

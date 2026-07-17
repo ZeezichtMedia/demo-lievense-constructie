@@ -1,0 +1,26 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  image: string;
+  align?: "start" | "center";
+}
+const { eyebrow, title, lead, image, align = "start" } = Astro.props;
+---
+<section data-hero="full" class="grain relative flex min-h-[62svh] flex-col overflow-hidden bg-dark text-base">
+  <div class="absolute inset-0">
+    <div class="reveal-image absolute inset-0">
+      <img src={image} alt="" class="ken-burns h-full w-full object-cover" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/75 via-dark/40 to-dark"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-dark/85 via-dark/25 to-transparent"></div>
+  </div>
+  <div class:list={["container-wide relative z-10 flex flex-1 flex-col justify-end pb-14 pt-40 md:pb-20 md:pt-52", align === "center" && "items-center text-center"]}>
+    <div class:list={["max-w-3xl", align === "center" && "mx-auto"]}>
+      <p class="eyebrow-bone reveal">{eyebrow}</p>
+      <h1 class="reveal mt-6 type-display-lg text-base heading-balance" set:html={title} />
+      {lead && <p class="reveal mt-6 type-lead max-w-xl text-base/85">{lead}</p>}
+    </div>
+  </div>
+</section>

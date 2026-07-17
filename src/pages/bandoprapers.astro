@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+
+const chapters = [
+  { num: "01", title: "Oprapen zonder verlies", body: "De bandopraper tilt voorgemaaide gewassen soepel van het zwad de maaidorser in. Rustig transport betekent minder korrelverlies en een schoner eindproduct." },
+  { num: "02", title: "Mechanisch of hydraulisch", body: "U kiest de aandrijving die bij uw machine en werkwijze past. Beide varianten zijn robuust uitgevoerd en gebouwd om seizoen na seizoen mee te draaien." },
+  { num: "03", title: "Passend op elk merk", body: "We bouwen de bandopraper op maat voor uw maaidorser, ongeacht het merk. De aansluiting en breedte stemmen we af op uw bestaande machine." },
+  { num: "04", title: "Gebouwd en nagelopen", body: "Elke bandopraper wordt in eigen werkplaats gefabriceerd, gelakt en compleet nagelopen voordat hij het erf verlaat. Klaar voor de eerste hectare." },
+];
+
+const specs = [
+  { k: "Toepassing", v: "Voorgemaaide gewassen" },
+  { k: "Aandrijving", v: "Mechanisch of hydraulisch" },
+  { k: "Geschikt voor", v: "Elk merk maaidorser" },
+  { k: "Uitvoering", v: "Maatwerk per machine" },
+  { k: "Fabricage", v: "Eigen werkplaats" },
+];
+---
+<Layout
+  title="Bandoprapers · Lievense Constructie"
+  description="Bandoprapers voor maaidorsers, op maat gebouwd voor het oprapen van voorgemaaide gewassen. Mechanisch of hydraulisch aangedreven, passend op elk merk."
+  heroTone="light"
+>
+  <PageHero
+    eyebrow="Ons specialisme"
+    title="Bandoprapers voor de <span class='text-accent-300'>maaidorser</span>."
+    lead="Speciaal ontwikkeld voor het oprapen van voorgemaaide gewassen. Op maat gebouwd, degelijk uitgevoerd en passend op elke maaidorser."
+    image="/images/lievense/oogst-actie.jpg"
+  />
+
+  <!-- INTRO + SPECS -->
+  <section class="section bg-base">
+    <div class="container-wide grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p class="eyebrow reveal">In het kort</p>
+        <h2 class="reveal mt-6 type-display-md text-ink heading-balance">
+          Ontworpen voor gewas, <span class="text-outline-ink">niet voor de folder.</span>
+        </h2>
+        <div class="reveal mt-8 space-y-5 type-lead text-ink-muted">
+          <p>
+            Een bandopraper neemt het voorgemaaide gewas van het land en voert het gelijkmatig de dorser in. Dat klinkt eenvoudig, maar de kwaliteit zit in de details: de breedte, de bandsnelheid, de aansluiting op uw maaidorser en de manier waarop het gewas wordt meegenomen.
+          </p>
+          <p>
+            Daarom bouwen we elke bandopraper op maat. We kijken naar uw gewas en machine en leveren een opraper die past, meegaat en zich terugverdient in een schone oogst.
+          </p>
+        </div>
+      </div>
+      <aside class="lg:col-span-4 lg:col-start-9">
+        <div class="reveal rounded-[8px] border border-line bg-base-2 p-7">
+          <p class="font-mono text-xs uppercase tracking-[0.14em] text-ink-muted">Specificatie</p>
+          <div class="mt-4">
+            {specs.map((s) => (
+              <div class="spec-row">
+                <span class="spec-key">{s.k}</span>
+                <span class="spec-val">{s.v}</span>
+              </div>
+            ))}
+          </div>
+          <a href="/contact" class="btn-primary mt-8 w-full justify-center">Vraag een opraper aan</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FULL BLEED IMAGE -->
+  <section class="bg-base pb-4">
+    <div class="container-wide">
+      <figure class="reveal-image relative aspect-[16/9] overflow-hidden rounded-[10px]">
+        <img src="/images/lievense/fabricage-primer.jpg" alt="Bandopraper in de grondverf, compleet gemonteerd in de werkplaats" class="h-full w-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent"></div>
+        <figcaption class="absolute bottom-6 left-6 font-mono text-xs uppercase tracking-[0.12em] text-base">In de grondverf · voor aflevering</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STICKY CHAPTERS -->
+  <section class="section bg-base">
+    <div class="container-wide grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <div class="lg:sticky lg:top-28">
+          <p class="eyebrow reveal">Hoe hij werkt</p>
+          <h2 class="reveal mt-6 type-display-md text-ink heading-balance">Van zwad tot dorser in één beweging.</h2>
+          <figure class="reveal-image mt-9 aspect-[4/5] overflow-hidden rounded-[8px]">
+            <img src="/images/lievense/oogst-actie.jpg" alt="Bandopraper gemonteerd op een maaidorser, oprapend in het veld" class="h-full w-full object-cover" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+      <div class="space-y-16 lg:col-span-6 lg:col-start-7">
+        {chapters.map((c) => (
+          <article class="reveal border-t border-line pt-8">
+            <p class="font-mono text-xs tracking-[0.1em] text-accent-600">{c.num}</p>
+            <h3 class="mt-4 type-display-sm text-ink">{c.title}</h3>
+            <p class="mt-4 text-ink-muted leading-relaxed">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA image="/images/lievense/oogst-actie.jpg" />
+</Layout>

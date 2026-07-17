@@ -1,0 +1,26 @@
+---
+interface Props { items?: string[]; tone?: "light" | "dark" }
+const {
+  items = ["Bandoprapers", "Maatwerkconstructie", "Aandrijftechniek", "Onderhoud en reparatie", "Agrarisch loonwerk", "Sinds 1966"],
+  tone = "light",
+} = Astro.props;
+const dark = tone === "dark";
+---
+<div class:list={["border-y py-6", dark ? "border-base/12 bg-dark" : "border-line bg-base-2"]} aria-label="Kernwoorden">
+  <div class="marquee">
+    {[0, 1].map((copy) => (
+      <div
+        class:list={["marquee-track font-display text-2xl md:text-3xl", dark ? "text-base/70" : "text-ink-faint"]}
+        style="font-stretch:112%;font-weight:700;"
+        aria-hidden={copy === 1 ? "true" : undefined}
+      >
+        {items.map((item) => (
+          <span class="flex items-center gap-6">
+            <span>{item}</span>
+            <span class="text-accent-500 text-lg">&#9679;</span>
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>

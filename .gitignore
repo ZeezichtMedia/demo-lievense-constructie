@@ -1,0 +1,25 @@
+# build output
+dist/
+.output/
+.vercel/
+
+# dependencies
+node_modules/
+
+# raw source media (kept locally, not deployed)
+.media-source/
+
+# astro
+.astro/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment
+.env
+.env.production
+
+# macOS
+.DS_Store
